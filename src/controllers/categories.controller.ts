@@ -1,10 +1,18 @@
 import { Request, Response } from "express";
 import CategoriesModel from "../models/categories.model";
 
+import {
+  create,
+  findAll,
+  findOne,
+  update,
+  remove,
+} from "../services/categories.service";
+
 export default {
   async create(req: Request, res: Response) {
     try {
-      const result = await CategoriesModel.create(req.body);
+      const result = await create(req.body);
       res.status(201).json({
         data: result,
         message: "Success create product",
@@ -17,13 +25,13 @@ export default {
       });
     }
   },
+
   async findAll(req: Request, res: Response) {
     try {
       const search = req.query.search;
-      const page = req.query.page;
-      const limit = req.query.limit;
 
-      const result = await CategoriesModel.find();
+
+      const result = await findAll();
       res.status(200).json({
         data: result,
         message: "Success get all categories",
@@ -36,11 +44,11 @@ export default {
       });
     }
   },
+
   async findOne(req: Request, res: Response) {
     try {
-      const result = await CategoriesModel.findOne({
-        _id: req.params.id,
-      });
+      const result = await findOne(req.params?.id);
+
       res.status(200).json({
         data: result,
         message: "Success get one product",
@@ -53,15 +61,10 @@ export default {
       });
     }
   },
+
   async update(req: Request, res: Response) {
     try {
-      const result = await CategoriesModel.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        {
-          new: true,
-        }
-      );
+      const result = await update(req.params.id, req.body);
 
       res.status(200).json({
         data: result,
@@ -75,11 +78,10 @@ export default {
       });
     }
   },
+
   async delete(req: Request, res: Response) {
     try {
-      const result = await CategoriesModel.findOneAndDelete({
-        _id: req.params.id,
-      });
+      const result = await remove(req.params.id);
 
       res.status(200).json({
         data: result,

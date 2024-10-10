@@ -44,6 +44,7 @@ export default {
           name: { $regex: search, $options: "i" },
         });
       }
+      
       const result = await findAll(query, limit, page);
       res.status(200).json({
         data: result,
@@ -91,7 +92,7 @@ export default {
       });
     }
   },
-  
+
   async delete(req: Request, res: Response) {
     try {
       const result = await remove(req.params?.id);
