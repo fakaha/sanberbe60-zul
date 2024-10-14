@@ -6,6 +6,8 @@ import productsController from "../controllers/products.controller";
 import categoriesController from "../controllers/categories.controller";
 import authController from "../controllers/auth.controller";
 import authMiddleware from "../middlewares/auth.middleware";
+import rbacMiddleware from "../middlewares/rbac.middleware";
+
 
 const router = express.Router();
 
@@ -26,7 +28,7 @@ router.delete("/products/:id", productsController.delete);
 
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
-router.get("/auth/me", authMiddleware, authController.me);
+router.get("/auth/me", [authMiddleware, rbacMiddleware(["admin", "user"])], authController.me);
 
 router.post("/upload", uploadMiddleware.single, uploadController.single);
 router.post("/uploads", uploadMiddleware.multiple, uploadController.multiple);
