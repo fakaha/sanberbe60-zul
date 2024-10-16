@@ -7,7 +7,8 @@ import { DATABASE_URL } from "./env";
 const connect = async () => {
   try {
     await mongoose.connect(DATABASE_URL, {
-      dbName: "sanber-be-bootcamp",
+      // dbName: "sanber-be-bootcamp",
+      dbName: "sanber-tugas-mongoose",
     });
     return "Database connected";
   } catch (error) {
