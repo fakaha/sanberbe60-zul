@@ -15,6 +15,12 @@ async function init() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
+    app.get("/", (req, res) => {
+      res.status(200).json({
+        message: "Welcome to SanberShop API"
+      });
+    });
+
     app.use("/api", routes);
     docs(app);
     // http://localhost:3000/api

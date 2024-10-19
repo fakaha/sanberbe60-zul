@@ -43,24 +43,20 @@ export default {
 
   async findAll(req: Request, res: Response) {
     try {
-      const {
-        limit = 10,
-        page = 1,
-      } = req.query as unknown as IPaginationQuery;
+      const { limit = 10, page = 1 } = req.query as unknown as IPaginationQuery;
 
-
-      const result = await findAll(limit, page, quer);
+      const result = await findAll(limit, page);
 
       res.status(200).json({
         data: result,
         message: "Success get all products",
       });
     } catch (error) {
-        const err = error as Error;
-        res.status(500).json({
-            data: err.message,
-            message: "Failed get order"
-        })
+      const err = error as Error;
+      res.status(500).json({
+        data: err.message,
+        message: "Failed get order",
+      });
     }
   },
 };

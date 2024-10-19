@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "v0.0.1",
-    "title": "Dokumentasi API Zhopee",
-    "description": "Dokumentasi API Zhopee"
+    "title": "Dokumentasi API SanberShop",
+    "description": "Dokumentasi API SanberShop"
   },
   "servers": [
     {
