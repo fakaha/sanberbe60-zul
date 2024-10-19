@@ -13,7 +13,8 @@ export const findAll = async (
     .limit(limit)
     .skip((page - 1) * limit)
     .sort({ createdAt: -1 })
-    .populate("productId");
+    .populate("orderItems.productId")
+    .populate("User");
   return result;
 };
 
