@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { create, findAll, findOne } from "../services/order.service";
 import { IPaginationQuery } from "../utils/interfaces";
 import ProductsModel from "../models/products.model";
+import mongoose, { Types } from "mongoose";
 
 export default {
   async create(req: Request, res: Response) {
@@ -43,9 +44,21 @@ export default {
 
   async findAll(req: Request, res: Response) {
     try {
-      const { limit = 10, page = 1 } = req.query as unknown as IPaginationQuery;
+      const {
+        limit = 10,
+        page = 1,
+        search,
+      } = req.query as unknown as IPaginationQuery;
 
-      const result = await findAll(limit, page);
+      const query = {};
+
+      if (search) {
+        Object.assign(query, {
+          createdBy: new mongoose.Types.ObjectId(search),
+        });
+      }
+
+      const result = await findAll(limit, page, query);
 
       res.status(200).json({
         data: result,

@@ -7,14 +7,15 @@ export const create = async (payload: Order): Promise<Order> => {
 
 export const findAll = async (
   limit: number = 10,
-  page: number = 1
+  page: number = 1,
+  query?: any
 ): Promise<Order[]> => {
-  const result = await OrdersModel.find()
+  const result = await OrdersModel.find(query)
     .limit(limit)
     .skip((page - 1) * limit)
     .sort({ createdAt: -1 })
     .populate("orderItems.productId")
-    .populate("User");
+    .populate("createdBy");
   return result;
 };
 
