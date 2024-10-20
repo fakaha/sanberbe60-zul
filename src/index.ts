@@ -4,6 +4,7 @@ import routes from "./routes/api";
 import bodyParser from "body-parser";
 import docs from "./docs/route";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 
 const PORT = 3000;
 
@@ -12,6 +13,12 @@ async function init() {
     await db();
 
     const app = express();
+    app.use(
+      "/api-docs",
+      swaggerUi.serve,
+      swaggerUi.setup(require("./swagger_output.json"))
+    );
+
 
     app.use(cors());
     app.use(bodyParser.json());
