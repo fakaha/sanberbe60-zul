@@ -1,4 +1,9 @@
+import express from "express";
+import swaggerUi from "swagger-ui-express";
 import swaggerAutogen from "swagger-autogen";
+
+const outputFile = "./swagger_output.json"; // File output untuk dokumentasi
+const endpointsFiles = ["../routes/api.ts"]; // File yang berisi endpoint API
 
 const doc = {
   info: {
@@ -66,13 +71,20 @@ const doc = {
         ],
       },
     },
-    apis: ["src/**/*.js"],
   },
 };
 
-
-
-const outputFile = "./swagger_output.json";
-const endpointsFiles = ["../routes/api.ts"];
-
+// Menghasilkan file dokumentasi
 swaggerAutogen({ openapi: "3.0.0" })(outputFile, endpointsFiles, doc);
+
+// Membuat server Express
+const app = express();
+
+// Menyajikan Swagger UI
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(require(outputFile)));
+
+// Menjalankan server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
