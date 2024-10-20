@@ -32,6 +32,9 @@ const doc = {
         qty: 100,
         categoryId: "670e1d37642fd7e7aed9f4d0",
       },
+      CategoryCreateRequest: {
+        name: "Pakaian",
+      },
       LoginRequest: {
         email: "zul@yopmail.com",
         password: "zul123",

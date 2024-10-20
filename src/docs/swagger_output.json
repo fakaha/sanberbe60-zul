@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3000/api",
       "description": "Local Server"
+    },
+    {
+      "url": "https://sanberbe60-zul.vercel.app/",
+      "description": "Vercel Server"
     }
   ],
   "paths": {
@@ -629,6 +633,18 @@
         },
         "xml": {
           "name": "ProductCreateRequest"
+        }
+      },
+      "CategoryCreateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Pakaian"
+          }
+        },
+        "xml": {
+          "name": "CategoryCreateRequest"
         }
       },
       "LoginRequest": {
