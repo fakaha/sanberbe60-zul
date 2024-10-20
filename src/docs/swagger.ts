@@ -11,6 +11,10 @@ const doc = {
       url: "http://localhost:3000/api",
       description: "Local Server",
     },
+    {
+      url: "https://sanberbe60-zul.vercel.app/docs/",
+      description: "Verce Server",
+    },
   ],
   components: {
     securitySchemes: {
@@ -26,7 +30,7 @@ const doc = {
         images: "",
         price: 100000,
         qty: 100,
-        categoryId: "670e1d37642fd7e7aed9f4d0"
+        categoryId: "670e1d37642fd7e7aed9f4d0",
       },
       LoginRequest: {
         email: "zul@yopmail.com",
@@ -45,6 +49,18 @@ const doc = {
         email: "zul@yopmail.com",
         password: "zul123",
         confirmPassword: "zul123",
+      },
+      OrderCreateRequest: {
+        grandTotal: 200000,
+        status: "completed",
+        createdBy: "6713a5850a346addcc0420ec",
+        orderItems: [
+          {
+            productId: "670e1e2a642fd7e7aed9f4db",
+            qty: 1,
+            price: 200000,
+          },
+        ],
       },
     },
   },

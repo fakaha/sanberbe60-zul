@@ -1,3 +1,7 @@
+/**
+  src/services/order.service.ts
+ */
+
 import OrdersModel, { Order } from "../models/order.model";
 
 export const create = async (payload: Order): Promise<Order> => {

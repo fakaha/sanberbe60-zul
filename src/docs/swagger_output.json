@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "v0.0.1",
-    "title": "Dokumentasi API SanberShop",
-    "description": "Dokumentasi API SanberShop"
+    "title": "Dokumentasi API Zhopee",
+    "description": "Dokumentasi API Zhopee"
   },
   "servers": [
     {
@@ -423,6 +423,96 @@
         ]
       }
     },
+    "/order": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/upload": {
       "post": {
         "tags": [
@@ -611,6 +701,46 @@
         },
         "xml": {
           "name": "UpdateProfileRequest"
+        }
+      },
+      "OrderCreateRequest": {
+        "type": "object",
+        "properties": {
+          "grandTotal": {
+            "type": "number",
+            "example": 200000
+          },
+          "status": {
+            "type": "string",
+            "example": "completed"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "6713a5850a346addcc0420ec"
+          },
+          "orderItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "example": "670e1e2a642fd7e7aed9f4db"
+                },
+                "qty": {
+                  "type": "number",
+                  "example": 1
+                },
+                "price": {
+                  "type": "number",
+                  "example": 200000
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "OrderCreateRequest"
         }
       }
     }
