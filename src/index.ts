@@ -3,6 +3,8 @@ import db from "./utils/database";
 import routes from "./routes/api";
 import bodyParser from "body-parser";
 import docs from "./docs/route";
+import swaggerUi from "swagger-ui-express";
+import swaggerAutogen from "swagger-autogen";
 
 const PORT = 3000;
 
@@ -14,10 +16,23 @@ async function init() {
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(express.static("public"));
+
+    const outputFile = "./docs/swagger_output.json";
+    const endpointsFiles = ["./routes/*.js"];
+
+    // Generate the swagger output file
+    await swaggerAutogen(outputFile, endpointsFiles);
+
+    // Load the generated swagger document
+    const swaggerDocument = require(outputFile);
+
+    // Setup swagger-ui
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     app.get("/", (req, res) => {
       res.status(200).json({
-        message: "Welcome to SanberShop API"
+        message: "Welcome to SanberShop API",
       });
     });
 
