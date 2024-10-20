@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import docs from "./docs/route";
 import cors from "cors";
 import swaggerUI from "swagger-ui-express";
+import {doc} from "./docs/swagger"
 
 const PORT = 3000;
 
@@ -14,7 +15,7 @@ async function init() {
 
     const app = express();
     const specs = require("./docs/swagger_output.json");
-    app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+    app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(doc));
 
     app.use(cors());
     app.use(bodyParser.json());
