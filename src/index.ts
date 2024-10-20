@@ -3,6 +3,7 @@ import db from "./utils/database";
 import routes from "./routes/api";
 import bodyParser from "body-parser";
 import docs from "./docs/route";
+import cors from "cors";
 
 const PORT = 3000;
 
@@ -12,12 +13,13 @@ async function init() {
 
     const app = express();
 
+    app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.get("/", (req, res) => {
       res.status(200).json({
-        message: "Welcome to SanberShop API"
+        message: "Welcome to SanberShop API",
       });
     });
 

@@ -67,6 +67,7 @@ const doc = {
       },
     },
   },
+  apis: ["src/**/*.js"],
 };
 
 const outputFile = "./swagger_output.json";
