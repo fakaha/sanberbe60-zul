@@ -66,9 +66,11 @@ const doc = {
         ],
       },
     },
+    apis: ["src/**/*.js"],
   },
-  apis: ["src/**/*.js"],
 };
+
+
 
 const outputFile = "./swagger_output.json";
 const endpointsFiles = ["../routes/api.ts"];
