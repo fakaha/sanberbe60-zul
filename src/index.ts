@@ -13,7 +13,8 @@ async function init() {
     await db();
 
     const app = express();
-    app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs)); 
+    const specs = require("./docs/swagger_output.json");
+    app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
     app.use(cors());
     app.use(bodyParser.json());
