@@ -4,6 +4,7 @@ import routes from "./routes/api";
 import bodyParser from "body-parser";
 import docs from "./docs/route";
 import cors from "cors";
+import swaggerUI from "swagger-ui-express";
 
 const PORT = 3000;
 
