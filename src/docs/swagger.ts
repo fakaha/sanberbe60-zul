@@ -12,8 +12,8 @@ const doc = {
       description: "Local Server",
     },
     {
-      url: "https://sanberbe60-zul.vercel.app/docs/",
-      description: "Verce Server",
+      url: "https://sanberbe60-zul.vercel.app/",
+      description: "Vercel Server",
     },
   ],
   components: {
