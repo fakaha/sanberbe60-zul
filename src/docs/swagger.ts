@@ -72,8 +72,4 @@ const doc = {
 const outputFile = "./swagger_output.json";
 const endpointsFiles = ["../routes/api.ts"];
 
-const swaggerUiOptions = {
-  apis: ["src/**/*.js"], // Sesuaikan dengan path file Anda
-};
-
 swaggerAutogen({ openapi: "3.0.0" })(outputFile, endpointsFiles, doc);
