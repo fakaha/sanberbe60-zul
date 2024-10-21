@@ -8,12 +8,12 @@ const doc = {
   },
   servers: [
     {
-      url: "http://localhost:3000/api",
-      description: "Local Server",
-    },
-    {
       url: "https://sanberbe60-zul.vercel.app/api/",
       description: "Vercel Server",
+    },
+    {
+      url: "http://localhost:3000/api",
+      description: "Local Server",
     },
   ],
   components: {
